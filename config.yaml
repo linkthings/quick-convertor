@@ -1,0 +1,40 @@
+## This example config is used to convert the csv into excel file with the below features
+## 1. filter records and only keep records whose Application name is App1 or App2
+## 2. Lookup the Server Type (production, development) based on the Endpoint name using regexp pattern defined in the example-dict-1.xlsx file
+## 3. Lookup the Vuln Category based on the Vulnerability Title using substring pattern defined in the example-dict-1.xlsx file
+## 4. Format the ID to be int value in the excel, and add the 2 new fields (Server Type, Vuln Category) in the result file
+
+input: 'example/example-data-1.csv'
+output: 'example/example-data-1-result.xlsx'
+sheetName: 'rawdata'
+fields: 
+    - "ID, ID, 10, int"
+    - "Endpoint,EndpointRef,20"
+    - "Application,Application,20"
+    - " ,Server Type,20,lookup,EndpointRef,ServerType,2"
+    - "Severity Level,Severity Level,10,int"
+    - "Vulnerability Title,VulTitle,50"
+    - ",Category,20,lookup,VulTitle,VulnCategory,2"
+    - "Components,,0,subfile,components"
+filter: 
+    - field: "Application"
+      values: 
+        - "App1"
+        - "App2"
+        - "App3"
+subfile: 
+    - name: 'components'
+      sheetName: 'Components'
+      output: 'example/example-data-1-result.xlsx'
+      fields: 
+            - "Application,Application,12"
+            - "value,Component,12"
+lookup:
+    - name: 'VulnCategory'
+      sheetName: 'Vuln Category'
+      fileName: 'example/example-dict-1.xlsx'
+      option: 'substring'
+    - name: 'ServerType'
+      sheetName: 'Server Type'
+      fileName: 'example/example-dict-1.xlsx'
+      option: 'regexp'

@@ -1,0 +1,22 @@
+input: 'example/example-jira.csv'
+output: 'example/example-jira.xlsx'
+sheetName: 'rawdata'
+fields: 
+    - "Assignee,,10"
+    - "Issue key,Issue key,12"
+    - "Project key,Project key,12"
+    - "Status,Status,13"
+    - "Summary,Summary,60"
+    - "Fix Version/s,Fix Version,12"
+    - "Time Spent,Time Spent(s),10,float"
+    - "Log Work,,0,subfile,JiraLogTime"
+subfile: 
+    - name: 'JiraLogTime'
+      sheetName: 'Time Spent'
+      output: 'example/example-jira-timespent.xlsx'
+      fields: 
+            - "Project key,Project Key,12"
+            - "Issue key,Issue key,12"
+            - "value,Reporter,12"
+            - "value,Date,12"
+            - "value,Hours,12,sec2hour"

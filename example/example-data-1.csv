@@ -1,0 +1,5 @@
+﻿ID,Endpoint,Application,QID,Severity Level,Vulnerability Title,Components,Components,Components
+1,dcc1p-server1,App1,105490,5,EOL/Obsolete Software: Apache Log4j 1.X Detected,Module1,Module2,Module3
+2,lab1d-server2,App1,105490,4,Oracle Java SE Critical Patch Update - October 2021 (CPUOCT2021),module2-1,,
+3,lab2t-server3,App3,105490,5,Mysql Workbench Critical Patch Update Oct 2021,module301,module302,module303
+4,lab2t-server4,App4,105490,5,Mysql Workbench Critical Patch Update Oct 2021,,,
